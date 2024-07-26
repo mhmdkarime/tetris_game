@@ -5,6 +5,7 @@ class BestPlayerListPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.red,
         title: Text('Best Player List'),
       ),
       body: Center(
