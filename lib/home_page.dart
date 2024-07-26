@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tetris_game/profile.dart';
+import 'profile.dart';
 import 'match_history.dart';
 import 'player_list.dart';
 import 'login_and_signup.dart';
@@ -17,7 +17,7 @@ class Home extends StatelessWidget {
 }
 
 class PlayGamePage extends StatelessWidget {
-  Profile user = Profile(1,'your name',0);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,7 +30,7 @@ class PlayGamePage extends StatelessWidget {
 
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => loginScreen()),
+                MaterialPageRoute(builder: (context) => LoginScrenn()),
               );
             },
           ),
@@ -106,3 +106,4 @@ class PlayGamePage extends StatelessWidget {
     );
   }
 }
+

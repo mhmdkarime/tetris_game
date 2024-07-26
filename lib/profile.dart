@@ -42,5 +42,5 @@ class Profile{
     return ' ${name} \n Best Score : ${bestScore} ';
   }
 }
-
-
+Profile user = Profile(1,'yourname',0);
+List<Profile> bestPlayers =[];
