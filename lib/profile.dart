@@ -1,5 +1,7 @@
 
-class Profile{
+import 'package:flutter/cupertino.dart';
+
+class Profile extends ChangeNotifier{
   int _ID;
   String _name;
   int _bestScore;
@@ -8,6 +10,12 @@ class Profile{
 
   Profile(this._ID, this._name, this._bestScore);
 
+  void updateProfile(int id, String name, int bestScore) {
+    _ID = id;
+    _name = name;
+    _bestScore = bestScore;
+    notifyListeners(); // Notify listeners to rebuild widgets
+  }
   List<int> get History => _History;
 
   set History(List<int> value) {

@@ -3,24 +3,23 @@ import 'profile.dart';
 import 'match_history.dart';
 import 'player_list.dart';
 import 'login_and_signup.dart';
-class Home extends StatelessWidget {
+import 'package:provider/provider.dart';
+
+class Home extends StatefulWidget {
   const Home({super.key});
 
   @override
+  State<Home> createState() => _HomeState();
+}
+
+class _HomeState extends State<Home> {
+  @override
   Widget build(BuildContext context) {
+    final user = Provider.of<Profile>(context);
     return MaterialApp(
       debugShowCheckedModeBanner: false,
 
-      home: PlayGamePage(),
-    );
-  }
-}
-
-class PlayGamePage extends StatelessWidget {
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
+      home: Scaffold(
       appBar: AppBar(
         title: Text(user.toString(),style: TextStyle(color: Colors.red , fontWeight: FontWeight.bold),),
         actions: [
@@ -38,11 +37,11 @@ class PlayGamePage extends StatelessWidget {
       ),
       body: Container(
         decoration: BoxDecoration(
-          gradient: LinearGradient(colors: [
-            Colors.blue,
-            Colors.deepPurpleAccent,
+            gradient: LinearGradient(colors: [
+              Colors.blue,
+              Colors.deepPurpleAccent,
 
-          ])
+            ])
         ),
         child: Center(
           child: Column(
@@ -65,7 +64,7 @@ class PlayGamePage extends StatelessWidget {
                   ,child:Center(
                   child: Text('Play New Game',style: TextStyle(color: Colors.white ,fontSize: 25)) ,
                 ),
-              ),
+                ),
               ),
               SizedBox(height: 20),
               ElevatedButton(
@@ -103,7 +102,7 @@ class PlayGamePage extends StatelessWidget {
           ],
         ),
       ),
+    )
     );
   }
 }
-
