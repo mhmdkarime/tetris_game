@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'profile_page.dart';
+import 'package:tetris_game/profile.dart';
 import 'match_history.dart';
 import 'player_list.dart';
 import 'login_and_signup.dart';
@@ -17,14 +17,15 @@ class Home extends StatelessWidget {
 }
 
 class PlayGamePage extends StatelessWidget {
+  Profile user = Profile(1,'your name',0);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Play Game',style: TextStyle(color: Colors.white),),
+        title: Text(user.toString(),style: TextStyle(color: Colors.red , fontWeight: FontWeight.bold),),
         actions: [
           IconButton(
-            icon: Icon(Icons.person),
+            icon: Icon(Icons.login),
             onPressed: () {
 
               Navigator.push(
@@ -38,8 +39,9 @@ class PlayGamePage extends StatelessWidget {
       body: Container(
         decoration: BoxDecoration(
           gradient: LinearGradient(colors: [
-            Colors.black,
-            Colors.blue
+            Colors.blue,
+            Colors.deepPurpleAccent,
+
           ])
         ),
         child: Center(
@@ -57,7 +59,13 @@ class PlayGamePage extends StatelessWidget {
                   //   MaterialPageRoute(builder: (context) => page()),
                   // );
                 },
-                child: Text('Play New Game',style: TextStyle(color: Colors.white)),
+                child: SizedBox(
+                  height: 70,
+                  width: 200
+                  ,child:Center(
+                  child: Text('Play New Game',style: TextStyle(color: Colors.white ,fontSize: 25)) ,
+                ),
+              ),
               ),
               SizedBox(height: 20),
               ElevatedButton(
@@ -71,7 +79,7 @@ class PlayGamePage extends StatelessWidget {
                     MaterialPageRoute(builder: (context) => MatchHistoryPage()),
                   );
                 },
-                child: Text('Match History'),
+                child: Text('Match History',style: TextStyle(color: Colors.white)),
               ),
             ],
           ),

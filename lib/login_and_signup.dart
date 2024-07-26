@@ -17,8 +17,8 @@ class loginScreen extends StatelessWidget {
               width: double.infinity,
               decoration: const BoxDecoration(
                 gradient: LinearGradient(colors: [
-                  Color(0xffB81736),
-                  Color(0xff281537),
+                  Colors.blueAccent,
+                  Colors.deepPurple,
                 ]),
               ),
               child: const Padding(
@@ -51,7 +51,7 @@ class loginScreen extends StatelessWidget {
                         decoration: InputDecoration(
                             label: Text('Gmail',style: TextStyle(
                               fontWeight: FontWeight.bold,
-                              color:Color(0xffB81736),
+                              color:Colors.blue,
                             ),)
                         ),
                       ),
@@ -59,7 +59,7 @@ class loginScreen extends StatelessWidget {
                         decoration: InputDecoration(
                             label: Text('Password',style: TextStyle(
                               fontWeight: FontWeight.bold,
-                              color:Color(0xffB81736),
+                              color:Colors.blue,
                             ),)
                         ),
                       ),

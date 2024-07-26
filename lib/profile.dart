@@ -39,7 +39,7 @@ class Profile{
   }
   @override
   String toString() {
-    return 'Name : ${name} \n Best Score : ${bestScore} ';
+    return ' ${name} \n Best Score : ${bestScore} ';
   }
 }
 
