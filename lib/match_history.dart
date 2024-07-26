@@ -5,6 +5,7 @@ class MatchHistoryPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.red,
         title: Text('Match History'),
       ),
       body: Center(
