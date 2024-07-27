@@ -15,8 +15,8 @@ class Tetris extends StatefulWidget {
 }
 
 class _TetrisState extends State<Tetris> {
-  Piece currentPiece = Piece(type: Tetromino.L);
-
+  Piece currentPiece = Piece(type: Tetromino.I);
+  bool gameOver =false;
   @override
   void initState() {
     super.initState();
@@ -26,14 +26,19 @@ class _TetrisState extends State<Tetris> {
 
   void startGame() {
     currentPiece.initializePiece();
-    Duration frameRate = const Duration(milliseconds: 500);
+    Duration frameRate = const Duration(milliseconds: 300);
     gameLoop(frameRate);
   }
 
   void gameLoop(Duration frameRate) {
     Timer.periodic(frameRate, (timer) {
       setState(() {
+          clearLines();
           handleLanding();
+          if(gameOver==true){
+            timer.cancel();
+            showGameOverDialog();
+          }
           currentPiece.movePiece(Direction.down);
 
       });
@@ -84,6 +89,10 @@ class _TetrisState extends State<Tetris> {
     setState(() {
       currentPiece = Piece(type: randomType);
       currentPiece.initializePiece();
+      if(isGameOver()){
+        gameOver = true;
+      }
+
     });
   }
   void moveLeft(){
@@ -109,7 +118,85 @@ class _TetrisState extends State<Tetris> {
     }
   }
 
+ void clearLines(){
 
+    for(int row = colLength-1;row>=0;row-- ){
+      bool rowIsFull=true;
+      for(int col =0 ;col<rowLength ;col++){
+        if(gameBoard[row][col] ==null) {
+          rowIsFull = false;
+          break;
+        }
+      }
+      if(rowIsFull){
+        for(int r = row ; r>0;r--){
+          gameBoard[r] = List.from(gameBoard[r-1]);
+        }
+        gameBoard[0]=List.generate(row, (index) =>null);
+        score+=20;
+      }
+    }
+ }
+ bool isGameOver(){
+    for(int col =0; col<rowLength;col++){
+      if(gameBoard[0][col]!=null){
+        return true;
+      }
+    }
+    return false;
+ }
+ void showGameOverDialog(){
+    showDialog(context: context, builder: (context)=>AlertDialog(
+      title: Text('Game Over'),
+      content: Text("your score is: $score"),
+      actions: [
+        TextButton(onPressed: (){
+          resetGame();
+          Navigator.pop(context);
+        }, child: Text('play again')),
+        TextButton(onPressed: (){
+          returnToHomePage();
+
+        }, child: Text('return to home page'))
+
+      ],
+    )
+    );
+
+ }
+ void resetGame(){
+    gameBoard = List.generate(
+     colLength,
+         (i) => List.generate(
+       rowLength,
+           (j) => null,
+     ),
+   );
+  gameOver = false;
+   if(score > highestScore){
+     highestScore = score;
+   }
+   score = 0;
+   createNewPiece();
+   startGame();
+ }
+
+ void returnToHomePage(){
+   gameBoard = List.generate(
+     colLength,
+         (i) => List.generate(
+       rowLength,
+           (j) => null,
+     ),
+   );
+   if(score > highestScore){
+     highestScore = score;
+   }
+   score = 0;
+   Navigator.pop(context);
+   Navigator.of(context).pop();
+
+ }
 
   @override
   Widget build(BuildContext context) {
@@ -134,24 +221,23 @@ class _TetrisState extends State<Tetris> {
                     return
                       Pixel(
                         color: Colors.yellow,
-                        child: index.toString(),
                       );
                   }
                   else if(gameBoard[row][col] != null ){
                     final Tetromino? tetrominoType =gameBoard[row][col];
-                    return Pixel(color: tetrominaColors[tetrominoType]!, child: '');
+                    return Pixel(color: tetrominaColors[tetrominoType]!);
               
                   }
                   else{
                     return
                       Pixel(
                         color: Color.fromARGB(60, 60, 60, 100),
-                        child: index.toString(),
                       );
                   }
                 },
               ),
             ),
+            Text('Score: $score',style: TextStyle(color: Colors.white),),
             Padding(
               padding: const EdgeInsets.only(top:  50.0),
               child: Row(

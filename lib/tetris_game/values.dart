@@ -11,6 +11,8 @@ List<List<Tetromino?>> gameBoard = List.generate(
 int rowLength = 10;
 int colLength = 15;
 
+int score =0 ;
+int highestScore=0;
 
 enum Tetromino { L, J, I, O, S, Z, T }
 enum Direction { left, right, down }
@@ -29,9 +31,8 @@ const Map<Tetromino ,Color> tetrominaColors ={
 
 class Pixel extends StatelessWidget {
   final Color color;
-  final String child;
 
-  Pixel({super.key, required this.color, required this.child});
+  Pixel({super.key, required this.color});
 
   @override
   Widget build(BuildContext context) {
@@ -40,12 +41,6 @@ class Pixel extends StatelessWidget {
       decoration: BoxDecoration(
         color: color,
         borderRadius: BorderRadius.circular(4),
-      ),
-      child: Center(
-        child: Text(
-          child,
-          style: TextStyle(color: Colors.white),
-        ),
       ),
     );
   }
