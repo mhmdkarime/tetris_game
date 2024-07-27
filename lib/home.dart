@@ -4,7 +4,7 @@ import 'match_history.dart';
 import 'player_list.dart';
 import 'login_and_signup.dart';
 import 'package:provider/provider.dart';
-
+import 'tetris.dart';
 class Home extends StatefulWidget {
   const Home({super.key});
 
@@ -52,11 +52,11 @@ class _HomeState extends State<Home> {
                   backgroundColor: Colors.red,
                 ),
                 onPressed: () {
-                  // Navigate to play new game page
-                  // Navigator.push(
-                  //   context,
-                  //   MaterialPageRoute(builder: (context) => page()),
-                  // );
+
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => Tetris()),
+                  );
                 },
                 child: SizedBox(
                   height: 70,
