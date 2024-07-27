@@ -4,7 +4,7 @@ import 'match_history.dart';
 import 'player_list.dart';
 import 'login_and_signup.dart';
 import 'package:provider/provider.dart';
-import 'tetris.dart';
+import 'tetris_game/tetris.dart';
 class Home extends StatefulWidget {
   const Home({super.key});
 
