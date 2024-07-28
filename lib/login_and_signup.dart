@@ -41,6 +41,7 @@ class _LoginScrennState extends State<LoginScrenn> {
         );
 
         // Navigate to another screen or update UI
+        user.isLogin =true;
         Navigator.of(context).pop(); // Navigate to the previous screen
       }
     } catch (e) {

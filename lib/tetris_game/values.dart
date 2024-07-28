@@ -43,10 +43,10 @@ class Pixel extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.all(1),
+      margin: EdgeInsets.all(0.5),
       decoration: BoxDecoration(
         color: color,
-        borderRadius: BorderRadius.circular(4),
+        borderRadius: BorderRadius.circular(2.5),
       ),
     );
   }
