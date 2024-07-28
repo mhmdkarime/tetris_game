@@ -26,9 +26,21 @@ class _TetrisState extends State<Tetris> {
 
   void startGame() {
     currentPiece.initializePiece();
-    Duration frameRate = const Duration(milliseconds: 300);
+    Duration frameRate;
+
+    if (isHard) {
+      frameRate = Duration(milliseconds: (400 - (score/2)).clamp(100,400).toInt()); // Ensure non-negative and reasonable values
+    } else if (isMedium) {
+      frameRate = Duration(milliseconds: (500 - (score/1.5)).clamp(100,500).toInt());
+    } else if (isEasy) {
+      frameRate = Duration(milliseconds: (700 - (score)).clamp(100,700).toInt());
+    } else {
+      throw ArgumentError('No difficulty level set');
+    }
+
     gameLoop(frameRate);
   }
+
 
   void gameLoop(Duration frameRate) {
     Timer.periodic(frameRate, (timer) {

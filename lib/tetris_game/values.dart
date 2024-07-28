@@ -8,8 +8,12 @@ List<List<Tetromino?>> gameBoard = List.generate(
   ),
 );
 
-int rowLength = 10;
-int colLength = 15;
+
+bool isEasy =false;
+bool isMedium =false;
+bool isHard =true;
+int rowLength = 20;
+int colLength = 30;
 
 int score =0 ;
 int highestScore=0;
