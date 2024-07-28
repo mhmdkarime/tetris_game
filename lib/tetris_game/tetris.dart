@@ -145,7 +145,15 @@ class _TetrisState extends State<Tetris> {
           gameBoard[r] = List.from(gameBoard[r-1]);
         }
         gameBoard[0]=List.generate(row, (index) =>null);
+        if(isEasy){
         score+=20;
+        }
+        else if(isMedium){
+        score+=30;
+        }
+        else{
+        score+=40;
+        }
       }
     }
  }
@@ -172,9 +180,8 @@ class _TetrisState extends State<Tetris> {
         }, child: Text('return to home page'))
 
       ],
-    )
+     )
     );
-
  }
  void resetGame(){
     gameBoard = List.generate(
@@ -215,7 +222,7 @@ class _TetrisState extends State<Tetris> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        backgroundColor: Colors.black,
+        backgroundColor: backGroundColor,
         body: Column(
           children: [
             Expanded(
@@ -243,21 +250,25 @@ class _TetrisState extends State<Tetris> {
                   else{
                     return
                       Pixel(
-                        color: Color.fromARGB(60, 60, 60, 100),
+                        color:pixelColor,
                       );
                   }
                 },
               ),
             ),
-            Text('Score: $score',style: TextStyle(color: Colors.white),),
+            Text('Score: $score',style: TextStyle(color: iconButtonsColor),),
             Padding(
               padding: const EdgeInsets.only(top:  50.0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  IconButton(onPressed: moveLeft, icon: Icon(Icons.arrow_back_ios),color: Colors.white,),
-                  IconButton(onPressed: moveRotate, icon: Icon(Icons.rotate_right),color: Colors.white),
-                  IconButton(onPressed: moveRight, icon: Icon(Icons.arrow_forward_ios),color: Colors.white),
+
+                  SizedBox(height: 80,width:80,
+                      child: IconButton(onPressed: moveLeft, icon: Icon(Icons.arrow_back_ios),color: iconButtonsColor,)),
+                  SizedBox(height: 80,width: 80,
+                      child: IconButton(onPressed: moveRotate, icon: Icon(Icons.rotate_right),color: iconButtonsColor)),
+                  SizedBox(height: 80,width: 80,
+                      child: IconButton(onPressed: moveRight, icon: Icon(Icons.arrow_forward_ios),color: iconButtonsColor)),
 
                 ],
               ),

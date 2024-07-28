@@ -14,7 +14,9 @@ bool isMedium =false;
 bool isHard =true;
 int rowLength = 20;
 int colLength = 30;
-
+Color backGroundColor = Colors.black;
+Color pixelColor = Color.fromARGB(60, 60, 60, 100);
+Color iconButtonsColor = Colors.white;
 int score =0 ;
 int highestScore=0;
 
