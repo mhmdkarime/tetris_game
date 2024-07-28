@@ -223,7 +223,7 @@ class _TetrisState extends State<Tetris> {
             double boardSize1 = min(constraints.maxWidth, constraints.maxHeight * 0.7);
             double boardSize2 = constraints.maxHeight;
             if (boardSize1 > 500) boardSize1 = 500;
-            if (boardSize2 < 870){
+            if (boardSize2 < 780){
               boardSize2 = constraints.maxHeight;
               boardSize1=boardSize1*0.5;
             }
