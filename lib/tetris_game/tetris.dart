@@ -2,9 +2,10 @@ import 'dart:async';
 import 'dart:math';
 import 'values.dart';
 import 'piece.dart';
-
+import 'package:tetris_game/db_function.dart';
 import 'package:flutter/material.dart';
-
+import 'package:tetris_game/profile.dart';
+import 'package:tetris_game/home.dart';
 class Tetris extends StatefulWidget {
   const Tetris({super.key});
 
@@ -29,9 +30,9 @@ class _TetrisState extends State<Tetris> {
     if (isHard) {
       frameRate = Duration(milliseconds: (400 - (score / 2)).clamp(100, 400).toInt());
     } else if (isMedium) {
-      frameRate = Duration(milliseconds: (500 - (score / 1.5)).clamp(100, 500).toInt());
+      frameRate = Duration(milliseconds: (450 - (score / 1.5)).clamp(100, 450).toInt());
     } else if (isEasy) {
-      frameRate = Duration(milliseconds: (700 - (score)).clamp(100, 700).toInt());
+      frameRate = Duration(milliseconds: (500 - (score)).clamp(100, 500).toInt());
     } else {
       throw ArgumentError('No difficulty level set');
     }
@@ -40,18 +41,31 @@ class _TetrisState extends State<Tetris> {
   }
 
   void gameLoop(Duration frameRate) {
-    Timer.periodic(frameRate, (timer) {
+    Timer.periodic(frameRate, (timer) async {
       setState(() {
         clearLines();
         handleLanding();
-        if (gameOver == true) {
+        if (gameOver) {
           timer.cancel();
           showGameOverDialog();
         }
         currentPiece.movePiece(Direction.down);
       });
+
+      if (gameOver && score > highestScore) {
+        setState(() {
+          highestScore = score;
+          user.bestScore = highestScore;
+        });
+        print(user.ID);
+        print(user.bestScore);
+
+        editBestScore(user.ID,user.bestScore);
+      }
     });
   }
+
+
 
   bool checkCollision(Direction direction) {
     for (int i = 0; i < currentPiece.position.length; i++) {
@@ -141,6 +155,7 @@ class _TetrisState extends State<Tetris> {
         } else {
           score += 40;
         }
+
       }
     }
   }
@@ -151,6 +166,8 @@ class _TetrisState extends State<Tetris> {
         return true;
       }
     }
+
+
     return false;
   }
 
@@ -178,8 +195,8 @@ class _TetrisState extends State<Tetris> {
       ),
     );
   }
-
-  void resetGame() {
+  void resetGame() async {
+    // Initialize the game board
     gameBoard = List.generate(
       colLength,
           (i) => List.generate(
@@ -188,15 +205,19 @@ class _TetrisState extends State<Tetris> {
       ),
     );
     gameOver = false;
-    if (score > highestScore) {
-      highestScore = score;
-    }
-    score = 0;
+
+    // Update best score if applicable
+
+    // Reset score and start a new game
+    setState(() {
+      score = 0;
+    });
     createNewPiece();
     startGame();
   }
 
-  void returnToHomePage() {
+  void returnToHomePage() async {
+    // Initialize the game board
     gameBoard = List.generate(
       colLength,
           (i) => List.generate(
@@ -204,13 +225,16 @@ class _TetrisState extends State<Tetris> {
             (j) => null,
       ),
     );
-    if (score > highestScore) {
-      highestScore = score;
-    }
-    score = 0;
+
+    setState(() {
+      score = 0;
+    });
     Navigator.pop(context);
     Navigator.of(context).pop();
   }
+
+
+
 
   @override
   Widget build(BuildContext context) {

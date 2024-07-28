@@ -9,9 +9,9 @@ List<List<Tetromino?>> gameBoard = List.generate(
 );
 
 
-bool isEasy =false;
+bool isEasy =true;
 bool isMedium =false;
-bool isHard =true;
+bool isHard =false;
 int rowLength = 20;
 int colLength = 30;
 Color backGroundColor = Colors.black;
@@ -51,3 +51,6 @@ class Pixel extends StatelessWidget {
     );
   }
 }
+
+
+

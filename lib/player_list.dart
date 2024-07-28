@@ -13,11 +13,13 @@ class  BestPlayerListPage extends StatefulWidget {
 class _BestPlayerListPage extends State<BestPlayerListPage> {
   bool _loaded = false; // used to show products list or progress bar
 
-  void update(bool success) {
+  void update(bool success, [String? message]) {
     setState(() {
-      _loaded = true; // show product list
-      if (!success) { // API request failed
-        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Failed to load data')));
+      _loaded = true;
+      if (!success) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text(message ?? 'Failed to load data')),
+        );
       }
     });
   }
