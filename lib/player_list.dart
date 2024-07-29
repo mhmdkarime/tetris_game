@@ -65,13 +65,15 @@ class ShowProducts extends StatelessWidget {
         itemBuilder: (context, index) {
           return Column(children: [
             Container(
-              color: index%2 == 0? Colors.blue[50]:Colors.blue[100],
+              color: index%2 == 0? Colors.orange[100]:Colors.blue[100],
               padding: EdgeInsets.all(5.0),
               width: width*0.9,
               child: Row(children: [
-                SizedBox(width: width * 0.15,),
+                SizedBox(width: width * 0.05,),
                 // If the Text widget doesn't fit within the available space, it will flexibly adjust its size.
-                Flexible(child:Text(bestPlayers[index].toString(), style: TextStyle(fontSize: width * 0.045))),
+                Flexible(child:Text(
+                    '${bestPlayers[index].name} bestScore:${bestPlayers[index].bestScore}',
+                    style: TextStyle(fontSize: width * 0.05))),
               ]),
             ),
             const SizedBox(height: 10.0)

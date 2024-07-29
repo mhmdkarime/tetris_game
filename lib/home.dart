@@ -127,7 +127,7 @@ class _HomeState extends State<Home> {
       home: Scaffold(
         appBar: AppBar(
           title: Text(
-            user.toString(),
+            user.isLogin?user.toString():'welcome , To sign in, click the button on \n the right of the screen',
             style: TextStyle(color: Colors.red, fontWeight: FontWeight.bold),
           ),
           actions: [
@@ -145,8 +145,8 @@ class _HomeState extends State<Home> {
         body: Container(
           decoration: BoxDecoration(
               gradient: LinearGradient(colors: [
-                Colors.blue,
-                Colors.deepPurpleAccent,
+                Color.fromRGBO(0, 102, 255, 0.7),
+                Color.fromRGBO(0, 0, 255, 1),
               ])),
           child: Center(
             child: Column(

@@ -55,7 +55,7 @@ class _TetrisState extends State<Tetris> {
       if (gameOver && score > highestScore) {
         setState(() {
           highestScore = score;
-          user.bestScore = highestScore;
+          user.updateProfile(user.ID, user.name, highestScore);
         });
         print(user.ID);
         print(user.bestScore);

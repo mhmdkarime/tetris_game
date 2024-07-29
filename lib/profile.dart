@@ -14,7 +14,7 @@ class Profile extends ChangeNotifier{
     _ID = id;
     _name = name;
     _bestScore = bestScore;
-    notifyListeners(); // Notify listeners to rebuild widgets
+    notifyListeners();
   }
   List<int> get History => _History;
 

@@ -34,7 +34,8 @@ class _LoginScrennState extends State<LoginScrenn> {
         );
       } else {
         // Update global or state-managed user profile
-        Provider.of<Profile>(context, listen: false).updateProfile(
+        user=Provider.of<Profile>(context, listen: false);
+        user.updateProfile(
           int.parse(data['id'].toString()),
           data['name'],
           int.parse(data['bestScore'].toString()),
@@ -63,8 +64,8 @@ class _LoginScrennState extends State<LoginScrenn> {
             width: double.infinity,
             decoration: const BoxDecoration(
               gradient: LinearGradient(colors: [
-                Colors.blueAccent,
-                Colors.deepPurple,
+                Color.fromRGBO(255, 100, 0, 1),
+                Color.fromRGBO(255, 100, 0, 0.55),
               ]),
             ),
             child: Padding(
@@ -112,7 +113,7 @@ class _LoginScrennState extends State<LoginScrenn> {
                       controller: _gmailController,
                       decoration: InputDecoration(
                         label: Text(
-                          'Gmail',
+                          'Email',
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
                             color: Colors.blue,
@@ -255,8 +256,8 @@ class _SignUpState extends State<SignUp> {
             width: double.infinity,
             decoration: const BoxDecoration(
               gradient: LinearGradient(colors: [
-                Colors.blueAccent,
-                Colors.deepPurple,
+                Color.fromRGBO(246, 1, 255, 1.0),
+                Color.fromRGBO(246, 1, 255, 0.4),
               ]),
             ),
             child: Padding(
@@ -307,7 +308,7 @@ class _SignUpState extends State<SignUp> {
                           'Name',
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
-                            color: Colors.blue,
+                            color: Color.fromRGBO(104, 253, 2, 1.0),
                           ),
                         ),
                       ),
@@ -316,10 +317,10 @@ class _SignUpState extends State<SignUp> {
                       controller: _gmailController,
                       decoration: InputDecoration(
                         label: Text(
-                          'Gmail',
+                          'Email',
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
-                            color: Colors.blue,
+                            color: Color.fromRGBO(104, 253, 2, 1.0),
                           ),
                         ),
                       ),
@@ -332,7 +333,7 @@ class _SignUpState extends State<SignUp> {
                           'Password',
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
-                            color: Colors.blue,
+                            color:Color.fromRGBO(104, 253, 2, 1.0),
                           ),
                         ),
                       ),
@@ -343,7 +344,8 @@ class _SignUpState extends State<SignUp> {
                       width: 200,
                       child: ElevatedButton(
                         style: ButtonStyle(
-                          backgroundColor: MaterialStateProperty.all<Color>(Colors.blue),
+                          backgroundColor: MaterialStateProperty.all<Color>(Color.fromRGBO(
+                              56, 253, 2, 1.0)),
                           foregroundColor: MaterialStateProperty.all<Color>(Colors.black),
                         ),
                         onPressed: () {
