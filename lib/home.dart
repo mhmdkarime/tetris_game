@@ -13,7 +13,7 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  String _difficulty = 'Hard';
+  String _difficulty = 'easy';
   String _color = 'Dark';
 
 
