@@ -50,5 +50,5 @@ class Profile extends ChangeNotifier{
     return ' ${name} \n Best Score : ${bestScore} ';
   }
 }
-Profile user = Profile(1,'yourname',0);
+Profile user = Profile(-1,'yourname',0);
 

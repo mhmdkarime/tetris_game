@@ -2,10 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:tetris_game/tetris_game/values.dart';
 import 'profile.dart';
 import 'player_list.dart';
-import 'login_and_signup.dart';
 import 'package:provider/provider.dart';
 import 'tetris_game/tetris.dart';
-
+import 'login.dart';
 class Home extends StatefulWidget {
   const Home({super.key});
 
@@ -119,6 +118,36 @@ class _HomeState extends State<Home> {
       },
     );
   }
+  void _showSignOutDialog(){
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+              title: Text("hello ${user.name} you are already logged in \n you want to sign out ? "),
+            actions: [
+              TextButton(
+                  child: Text('Sign out'),
+                onPressed: (){
+                    setState(() {
+                      user.isLogin=false;
+                      user.ID=-1;
+                    });
+                    Navigator.of(context).pop();
+                },
+              ),
+              TextButton(
+                  child: Text('cancel'),
+                onPressed: (){
+                    Navigator.of(context).pop();
+                },
+              )
+            ],
+          );
+
+         }
+        );
+    
+  }
   @override
   Widget build(BuildContext context) {
     final user = Provider.of<Profile>(context);
@@ -133,12 +162,16 @@ class _HomeState extends State<Home> {
           actions: [
             IconButton(
               icon: Icon(Icons.login),
-              onPressed: () {
+              onPressed:() {
+                if(!user.isLogin){
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => LoginScrenn()),
-                );
-              },
+                  MaterialPageRoute(builder: (context) => LoginScrenn()),);
+                }
+                else{
+                  _showSignOutDialog();
+                }
+              }
             ),
           ],
         ),
