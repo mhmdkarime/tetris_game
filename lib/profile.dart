@@ -14,7 +14,7 @@ class Profile extends ChangeNotifier{
     _ID = id;
     _name = name;
     _bestScore = bestScore;
-    notifyListeners(); // Notify listeners to rebuild widgets
+    notifyListeners();
   }
   List<int> get History => _History;
 
@@ -50,5 +50,5 @@ class Profile extends ChangeNotifier{
     return ' ${name} \n Best Score : ${bestScore} ';
   }
 }
-Profile user = Profile(1,'yourname',0);
+Profile user = Profile(-1,'yourname',0);
 
