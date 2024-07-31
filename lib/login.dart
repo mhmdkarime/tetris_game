@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:provider/provider.dart';
+import 'package:tetris_game/tetris_game/values.dart';
 import 'profile.dart';
 import 'signup.dart';
 import 'package:encrypt_shared_preferences/provider.dart';
@@ -44,7 +45,7 @@ class _LoginScrennState extends State<LoginScrenn> {
           int.parse(data['bestScore'].toString()),
         );
 
-        // Navigate to another screen or update UI
+        highestScore=int.parse(data['bestScore'].toString());
         user.isLogin = true;
         Navigator.of(context).pop(); // Navigate to the previous screen
       }
