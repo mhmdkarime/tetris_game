@@ -5,6 +5,7 @@ import 'player_list.dart';
 import 'package:provider/provider.dart';
 import 'tetris_game/tetris.dart';
 import 'login.dart';
+
 class Home extends StatefulWidget {
   const Home({super.key});
 
@@ -13,9 +14,8 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  String _difficulty = 'easy';
+  String _difficulty = 'Easy';  // Changed initial value to match the items in the dropdown
   String _color = 'Dark';
-
 
   void _showGameSettingsDialog() {
     showDialog(
@@ -44,20 +44,18 @@ class _HomeState extends State<Home> {
                         }).toList(),
                         onChanged: (String? newValue) {
                           setState(() {
-                            if(newValue == 'Easy'){
-                              isEasy=true;
-                              isMedium=false;
-                              isHard=false;
-                            }
-                            else if(newValue == 'Medium'){
-                              isEasy=false;
-                              isMedium=true;
-                              isHard=false;
-                            }
-                            else{
-                              isEasy=false;
-                              isMedium=false;
-                              isHard=true;
+                            if (newValue == 'Easy') {
+                              isEasy = true;
+                              isMedium = false;
+                              isHard = false;
+                            } else if (newValue == 'Medium') {
+                              isEasy = false;
+                              isMedium = true;
+                              isHard = false;
+                            } else {
+                              isEasy = false;
+                              isMedium = false;
+                              isHard = true;
                             }
                             tempDifficulty = newValue!;
                           });
@@ -80,17 +78,16 @@ class _HomeState extends State<Home> {
                         }).toList(),
                         onChanged: (String? newValue) {
                           setState(() {
-                            if(newValue == 'Dark'){
+                            if (newValue == 'Dark') {
                               print("dark");
-                               backGroundColor = Colors.black;
-                               pixelColor = Color.fromRGBO(60, 60, 60, 1);
-                               iconButtonsColor = Colors.white;
-                            }
-                            else{
+                              backGroundColor = Colors.black;
+                              pixelColor = Color.fromRGBO(60, 60, 60, 1);
+                              iconButtonsColor = Colors.white;
+                            } else {
                               print("white");
-                               backGroundColor = Colors.white;
-                               pixelColor = Color.fromRGBO(150, 150, 150, 1);
-                               iconButtonsColor = Colors.black;
+                              backGroundColor = Colors.white;
+                              pixelColor = Color.fromRGBO(150, 150, 150, 1);
+                              iconButtonsColor = Colors.black;
                             }
                             tempColor = newValue!;
                           });
@@ -118,36 +115,36 @@ class _HomeState extends State<Home> {
       },
     );
   }
-  void _showSignOutDialog(){
+
+  void _showSignOutDialog() {
     showDialog(
         context: context,
         builder: (BuildContext context) {
           return AlertDialog(
-              title: Text("hello ${user.name} you are already logged in \n you want to sign out ? "),
+            title: Text("hello ${user.name} you are already logged in \n you want to sign out ? "),
             actions: [
               TextButton(
-                  child: Text('Sign out'),
-                onPressed: (){
-                    setState(() {
-                      user.isLogin=false;
-                      user.ID=-1;
-                    });
-                    Navigator.of(context).pop();
+                child: Text('Sign out'),
+                onPressed: () {
+                  setState(() {
+                    user.isLogin = false;
+                    user.ID = -1;
+                  });
+                  Navigator.of(context).pop();
                 },
               ),
               TextButton(
-                  child: Text('cancel'),
-                onPressed: (){
-                    Navigator.of(context).pop();
+                child: Text('cancel'),
+                onPressed: () {
+                  Navigator.of(context).pop();
                 },
               )
             ],
           );
-
-         }
-        );
-    
+        }
+    );
   }
+
   @override
   Widget build(BuildContext context) {
     final user = Provider.of<Profile>(context);
@@ -156,22 +153,21 @@ class _HomeState extends State<Home> {
       home: Scaffold(
         appBar: AppBar(
           title: Text(
-            user.isLogin?user.toString():'welcome , To sign in, click the button on \n the right of the screen',
+            user.isLogin ? user.toString() : 'welcome , To sign in, click the button on \n the right of the screen',
             style: TextStyle(color: Colors.red, fontWeight: FontWeight.bold),
           ),
           actions: [
             IconButton(
-              icon: Icon(Icons.login),
-              onPressed:() {
-                if(!user.isLogin){
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => LoginScrenn()),);
+                icon: Icon(Icons.login),
+                onPressed: () {
+                  if (!user.isLogin) {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => LoginScrenn()),);
+                  } else {
+                    _showSignOutDialog();
+                  }
                 }
-                else{
-                  _showSignOutDialog();
-                }
-              }
             ),
           ],
         ),
@@ -191,15 +187,16 @@ class _HomeState extends State<Home> {
                   ),
                   onPressed: () {
                     setState(() {
-                      if(isEasy){
-                        rowLength=10;
-                        colLength=15;
-                      }else if(isMedium){
-                        rowLength=15;
-                        colLength=23;
-                      }else if(isHard){
-                        rowLength=20;
-                        colLength=30;
+                      score = 0;
+                      if (isEasy) {
+                        rowLength = 10;
+                        colLength = 15;
+                      } else if (isMedium) {
+                        rowLength = 15;
+                        colLength = 23;
+                      } else if (isHard) {
+                        rowLength = 20;
+                        colLength = 30;
                       }
                     });
                     gameBoard = List.generate(colLength, (i) => List.generate(rowLength, (j) => null,),);
@@ -226,15 +223,15 @@ class _HomeState extends State<Home> {
                   ),
                   onPressed: () {
                     setState(() {
-                      if(isEasy){
-                        rowLength=10;
-                        colLength=15;
-                      }else if(isMedium){
-                        rowLength=15;
-                        colLength=23;
-                      }else if(isHard){
-                        rowLength=20;
-                        colLength=30;
+                      if (isEasy) {
+                        rowLength = 10;
+                        colLength = 15;
+                      } else if (isMedium) {
+                        rowLength = 15;
+                        colLength = 23;
+                      } else if (isHard) {
+                        rowLength = 20;
+                        colLength = 30;
                       }
                     });
                     Navigator.push(
