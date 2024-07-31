@@ -13,19 +13,19 @@ void getBestPlayer(Function(bool success) update) async {
     if (response.statusCode == 200) {
       final jsonResponse = convert.jsonDecode(response.body);
       for (var row in jsonResponse) {
-        Profile p = Profile( // create a product object from JSON row object
+        Profile p = Profile(
             0,
             row['name'],
             int.parse(row['best_score']),
         );
-        bestPlayers.add(p); // add the product object to the _products list
+        bestPlayers.add(p);
       }
-      update(true); // callback update method to inform that we completed retrieving data
+      update(true);
     }
   }
   catch(e) {
     print('Error loading data with error ${e.toString()}');
-    update(false); // inform through callback that we failed to get data
+    update(false);
   }
 }
 

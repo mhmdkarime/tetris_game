@@ -13,7 +13,7 @@ class Tetris extends StatefulWidget {
 }
 
 class _TetrisState extends State<Tetris> {
-  Piece currentPiece = Piece(type: Tetromino.I);
+  Piece currentPiece = Piece(type: randomType);
   bool gameOver = false;
 
   @override

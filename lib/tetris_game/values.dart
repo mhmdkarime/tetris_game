@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
 List<List<Tetromino?>> gameBoard = List.generate(
@@ -22,7 +24,8 @@ int highestScore=0;
 
 enum Tetromino { L, J, I, O, S, Z, T }
 enum Direction { left, right, down }
-
+Random randtype = Random();
+Tetromino randomType = Tetromino.values[randtype.nextInt(Tetromino.values.length)];
 
 const Map<Tetromino ,Color> tetrominaColors ={
   Tetromino.L:Colors.orange,

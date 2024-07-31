@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:tetris_game/tetris_game/values.dart';
 import 'profile.dart';
@@ -14,7 +16,7 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  String _difficulty = 'Easy';  // Changed initial value to match the items in the dropdown
+  String _difficulty = 'Easy';
   String _color = 'Dark';
 
   void _showGameSettingsDialog() {
@@ -211,8 +213,12 @@ class _HomeState extends State<Home> {
                         rowLength = 20;
                         colLength = 30;
                       }
+                      gameBoard = List.generate(colLength, (i) => List.generate(rowLength, (j) => null,),);
+                      randtype = Random();
+                      randomType = Tetromino.values[randtype.nextInt(Tetromino.values.length)];
                     });
-                    gameBoard = List.generate(colLength, (i) => List.generate(rowLength, (j) => null,),);
+
+
                     Navigator.push(
                       context,
                       MaterialPageRoute(builder: (context) => Tetris()),
@@ -246,6 +252,8 @@ class _HomeState extends State<Home> {
                         rowLength = 20;
                         colLength = 30;
                       }
+                      randtype = Random();
+                      randomType = Tetromino.values[randtype.nextInt(Tetromino.values.length)];
                     });
                     Navigator.push(
                       context,
@@ -283,7 +291,6 @@ class _HomeState extends State<Home> {
               IconButton(
                 icon: Icon(Icons.leaderboard, color: Colors.white),
                 onPressed: () {
-                  // Navigate to best player list page
                   Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) => BestPlayerListPage()),
