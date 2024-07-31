@@ -8,7 +8,6 @@ import 'package:tetris_game/profile.dart';
 import 'package:tetris_game/home.dart';
 class Tetris extends StatefulWidget {
   const Tetris({super.key});
-
   @override
   State<Tetris> createState() => _TetrisState();
 }
@@ -73,8 +72,6 @@ class _TetrisState extends State<Tetris> {
       }
     });
   }
-
-
 
   bool checkCollision(Direction direction) {
     for (int i = 0; i < currentPiece.position.length; i++) {
@@ -175,11 +172,8 @@ class _TetrisState extends State<Tetris> {
         return true;
       }
     }
-
-
     return false;
   }
-
   void showGameOverDialog() {
     showDialog(
       context: context,
@@ -205,7 +199,6 @@ class _TetrisState extends State<Tetris> {
     );
   }
   void resetGame() async {
-    // Initialize the game board
     gameBoard = List.generate(
       colLength,
           (i) => List.generate(
@@ -214,10 +207,6 @@ class _TetrisState extends State<Tetris> {
       ),
     );
     gameOver = false;
-
-    // Update best score if applicable
-
-    // Reset score and start a new game
     setState(() {
       score = 0;
     });
@@ -242,9 +231,6 @@ class _TetrisState extends State<Tetris> {
     Navigator.of(context).pop();
   }
 
-
-
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -256,7 +242,7 @@ class _TetrisState extends State<Tetris> {
             double boardSize1 = min(constraints.maxWidth, constraints.maxHeight * 0.7);
             double boardSize2 = constraints.maxHeight;
             if (boardSize1 > 500) boardSize1 = 500;
-            if (boardSize2 < 819){
+            if (boardSize2 < 780){
               boardSize2 = constraints.maxHeight;
               boardSize1=boardSize1*0.6;
             }
@@ -328,7 +314,6 @@ class _TetrisState extends State<Tetris> {
                       ],
                     ),
                   ),
-
                 ],
               ),
             );

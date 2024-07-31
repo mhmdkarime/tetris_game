@@ -48,15 +48,28 @@ class _HomeState extends State<Home> {
                               isEasy = true;
                               isMedium = false;
                               isHard = false;
+                              rowLength = 10;
+                              colLength = 15;
                             } else if (newValue == 'Medium') {
                               isEasy = false;
                               isMedium = true;
                               isHard = false;
+                              rowLength = 15;
+                              colLength = 23;
                             } else {
                               isEasy = false;
                               isMedium = false;
                               isHard = true;
+                              rowLength = 20;
+                              colLength = 30;
                             }
+                            gameBoard = List.generate(
+                              colLength,
+                                  (i) => List.generate(
+                                rowLength,
+                                    (j) => null,
+                              ),
+                            );
                             tempDifficulty = newValue!;
                           });
                         },
